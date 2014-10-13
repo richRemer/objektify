@@ -50,10 +50,23 @@ function extend(proto, props) {
     return copy(obj, props);
 }
 
+/**
+ * Clone an object, creating a new object with the same prototype and properties.
+ * @param {object} obj
+ * @returns {object}
+ */
+function clone(obj) {
+    var cloned = Object.create(Object.getPrototypeOf(obj));
+    for (var prop in obj)
+        if (obj.hasOwnProperty(prop)) cloned[prop] = obj[prop];
+    return cloned;
+}
+
 /** export functions from module */
 module.exports = {
     mixin: mixin,
     merge: merge,
     copy: copy,
-    extend: extend
+    extend: extend,
+    clone: clone
 };

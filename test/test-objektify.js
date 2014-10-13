@@ -3,6 +3,7 @@ var objektify = require(".."),
     merge = objektify.merge,
     copy = objektify.copy,
     extend = objektify.extend,
+    clone = objektify.clone,
     expect = require("expect.js");
 
 describe("mixin", function() {
@@ -51,14 +52,24 @@ describe("extend", function() {
     });
 });
 
+describe("clone", function() {
+    it("should clone an object, including its prototype", function() {
+        var A = {},
+            a = Object.create(A),
+            b;
+
+        a.foo = "bar";
+        b = clone(a);
+        expect(Object.getPrototypeOf(b)).to.be(A);
+        expect(b.foo).to.be("bar");
+    });
+});
+
 /** Future
 
 union(A,B)     - A,B -> C
 intersect(A,B) - A.b -> C
 difference(A,B)- A.a, B.c -> C
-
-flatten(A)  - A,Aprot* -> A
-clone(A)    - A,C -> C::Aprot
 
 */
 

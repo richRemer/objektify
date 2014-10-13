@@ -1,7 +1,8 @@
 Objektify
 =========
-The `objektify` module provides utility functions for working with objects.  The
-following functions are provided: `copy`, `extend`, `merge`, and `mixin`.
+The `objektify` module provides utility functions for working with objects.
+The following functions are provided: `copy`, `extend`, `merge`, `mixin`, and
+`clone`.
 
 Usage
 -----
@@ -48,3 +49,18 @@ function Class() {
     Mixin.call(mixin(this, Mixin));
 }
 ```
+
+### The `clone` function
+The `clone` function clones a source object, creating a new object with the
+same prototype and with all enumerable properties copied over.
+
+```js
+var clone = require("objektify").clone,
+    MyFoo = require("my-foo"),
+    foo = new MyFoo();
+
+var cloned = clone(foo);
+assert(cloned instanceof MyFoo);
+
+```
+
