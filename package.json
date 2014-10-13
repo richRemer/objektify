@@ -1,6 +1,6 @@
 {
   "name": "objektify",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Common object operations; merge, extend, copy, et al.",
   "main": "index.js",
   "scripts": {
