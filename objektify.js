@@ -51,14 +51,19 @@ function extend(proto, props) {
 }
 
 /**
- * Clone an object, creating a new object with the same prototype and properties.
+ * Clone an object, creating a new object with the same prototype and property
+ * definitions.
  * @param {object} obj
  * @returns {object}
  */
 function clone(obj) {
     var cloned = Object.create(Object.getPrototypeOf(obj));
-    for (var prop in obj)
-        if (obj.hasOwnProperty(prop)) cloned[prop] = obj[prop];
+    
+    Object.getOwnPropertyNames(obj).forEach(function(prop) {
+        var def = Object.getOwnPropertyDescriptor(obj, prop);
+        Object.defineProperty(cloned, prop, def);
+    });
+    
     return cloned;
 }
 
